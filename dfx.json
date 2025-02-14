@@ -1,0 +1,26 @@
+{
+  "canisters": {
+    "todo-app-backend": {
+      "main": "src/todo-app-backend/main.mo",
+      "type": "motoko"
+    },
+    "todo-app-frontend": {
+      "dependencies": [
+        "todo-app-backend"
+      ],
+      "source": [
+        "src/todo-app-frontend/dist"
+      ],
+      "type": "assets",
+      "workspace": "todo-app-frontend"
+    }
+  },
+  "defaults": {
+    "build": {
+      "args": "",
+      "packtool": ""
+    }
+  },
+  "output_env_file": ".env",
+  "version": 1
+}
