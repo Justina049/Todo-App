@@ -1,5 +1,9 @@
 import Buffer "mo:base/Buffer";
 import Nat "mo:base/Nat";
+import Bool "mo:base/Bool";
+import Iter "mo:base/Iter";
+import Array "mo:base/Array";
+
 
 actor ToDo {
   var tasks = Buffer.Buffer<(Text, Bool)>(0);
@@ -17,11 +21,17 @@ actor ToDo {
     };
   };
 
-  // Delete tasksk
+  // Delete task
   public func deleteTask(index : Nat) {
     if (index < tasks.size()) {
       ignore tasks.remove(index);
     };
   };
+
+  // Get Completed Tasks
+  public query func getCompletedTasks() : async [(Text, Bool)] {
+    let allTasks = Iter.toArray(tasks.vals());
+    return Array.filter<(Text, Bool)>(allTasks, func(task) { task.1 == true });  
+  }
 
 }
