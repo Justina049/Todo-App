@@ -28,6 +28,11 @@ actor ToDo {
     };
   };
 
+  // Get All Task
+  public query func getTasks() : async [(Text, Bool)] {
+    return Buffer.toArray(tasks);
+  };
+
   // Get Completed Tasks
   public query func getCompletedTasks() : async [(Text, Bool)] {
     let allTasks = Iter.toArray(tasks.vals());
